@@ -16,25 +16,27 @@ import javax.swing.SwingConstants;
 public class View extends JFrame {
   private JMenuBar menuBar = new JMenuBar();
   private JTextArea textArea = new JTextArea();
-  private JScrollPane scroll = new JScrollPane(textArea);
+  private JScrollPane scroll = new JScrollPane(getTextArea());
   private JLabel columnRowCounter = new JLabel();
-  private int column = 0;
-  private int row = 0;
-  private BorderLayout bl = new BorderLayout();
+  private JMenuItem newFile = new JMenuItem("New");
+  private JMenuItem openFile = new JMenuItem("Open");
+  private JMenuItem saveFile = new JMenuItem("Save");
+  private JMenuItem exitFile = new JMenuItem("Exit");
+  private int column = 1;
+  private int row = 1;
 
   public View() {
     initializeSimpleView();
   }
 
+  // Method that initializes a Simple View
   private void initializeSimpleView() {
-
     setTitle("Simple Notepad");
     setSize(new Dimension(700, 450));
     setLocationRelativeTo(null);
     setJMenuBar(menuBar());
     add(setScroll(), BorderLayout.CENTER);
     add(setColumnRowCounter(), BorderLayout.PAGE_END);
-
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     setVisible(true);
   }
@@ -52,15 +54,10 @@ public class View extends JFrame {
     JMenu viewMenu = new JMenu("View");
     JMenu helpMenu = new JMenu("Help");
 
-    JMenuItem newFile = new JMenuItem("New");
-    JMenuItem openFile = new JMenuItem("Open");
-    JMenuItem saveFile = new JMenuItem("Save");
-    JMenuItem exitFile = new JMenuItem("Exit");
-
-    fileMenu.add(newFile);
-    fileMenu.add(openFile);
-    fileMenu.add(saveFile);
-    fileMenu.add(exitFile);
+    fileMenu.add(newFile());
+    fileMenu.add(openFile());
+    fileMenu.add(saveFile());
+    fileMenu.add(exitFile());
 
     menuBar.add(fileMenu);
     menuBar.add(editMenu);
@@ -71,7 +68,32 @@ public class View extends JFrame {
     return menuBar;
   }
 
-  private JScrollPane setScroll() {
+  public JTextArea getTextArea() {
+    return textArea;
+  }
+
+  public JScrollPane setScroll() {
     return scroll;
   }
+
+  public JMenuItem newFile() {
+    return newFile;
+  }
+
+  public JMenuItem openFile() {
+    return openFile;
+  }
+
+  public JMenuItem saveFile() {
+    return saveFile;
+  }
+
+  public JMenuItem exitFile() {
+    return exitFile;
+  }
+
+  public void setTextArea(String text) {
+    textArea.setText(text);
+  }
+
 }
