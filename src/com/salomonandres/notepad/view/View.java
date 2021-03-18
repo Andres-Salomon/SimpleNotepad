@@ -96,4 +96,8 @@ public class View extends JFrame {
     textArea.setText(text);
   }
 
+  public void changeTitle(String fileName) {
+    this.setTitle("Simple Notepad - " + fileName);
+  }
+
 }

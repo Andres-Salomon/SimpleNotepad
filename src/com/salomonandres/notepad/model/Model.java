@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Model {
-  private StringBuilder sb = new StringBuilder();
+  private StringBuilder sb;
   private String s;
   private FileReader fr;
   private FileWriter fw;
@@ -17,6 +17,7 @@ public class Model {
 
   public String loadFile(String fileLocation) throws IOException {
     fr = new FileReader(fileLocation);
+    sb = new StringBuilder();
 
     int frValue = fr.read();
     while (frValue != -1) {
@@ -33,9 +34,10 @@ public class Model {
     return s;
   }
 
-  public void saveFile(String fileLocation) throws IOException {
+  public void saveFile(String fromTextArea, String fileLocation)
+      throws IOException {
     fw = new FileWriter(fileLocation);
-    fw.write("pruebadeguardado");
+    fw.write(fromTextArea);
     fw.close();
   }
 

@@ -38,6 +38,7 @@ public class Controller {
     fileChooser.showOpenDialog(null);
 
     try {
+      view.changeTitle(fileChooser.getSelectedFile().getName());
       view.setTextArea(
           model.loadFile(fileChooser.getSelectedFile().getAbsolutePath()));
     }
@@ -55,7 +56,8 @@ public class Controller {
     fileChooser.setFileFilter(filter);
     fileChooser.showSaveDialog(null);
     try {
-      model.saveFile(fileChooser.getSelectedFile().getAbsolutePath());
+      model.saveFile(view.getTextArea().getText(),
+          fileChooser.getSelectedFile().getAbsolutePath());
     }
     catch (IOException e) {
       e.printStackTrace();
